@@ -6,7 +6,8 @@
 //  Copyright © 2020 Sajan Shrestha. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 
 class Game {
     
@@ -26,6 +27,15 @@ class Game {
     
     enum Choice: String, CaseIterable {
         case rock, paper, scissor
+        
+        var image: UIImage? {
+            switch self {
+            case .rock: return UIImage(named: "rock")
+            case .paper: return UIImage(named: "paper")
+            case .scissor: return UIImage(named: "scissor")
+
+            }
+        }
     }
     
     @Published private(set) var winner: Player?

@@ -83,27 +83,14 @@ extension GameViewController {
     private func subscribeUserChoiceImageToUserChoiceImagePublisher() {
         
         userChoiceImageCancellable = game.$userChoice
-            .map { self.image(for: $0)}
+            .map { $0?.image }
             .assign(to: \.image, on: userChoiceImage)
     }
     
     private func subscribeComputerChoiceImageToComputerChoiceImagePublisher() {
         
         computerChoiceImageCancellable = game.$computerChoice
-            .map { self.image(for: $0) }
+            .map { $0?.image }
             .assign(to: \.image, on: computerChoiceImage)
-    }
-    
-    private func image(for choice: Game.Choice?) -> UIImage? {
-        
-        guard let choice = choice else { return nil }
-        switch choice {
-        case .paper:
-            return UIImage(named: "paper")
-        case .rock:
-            return UIImage(named: "rock")
-        case .scissor:
-            return UIImage(named: "scissor")
-        }
     }
 }
